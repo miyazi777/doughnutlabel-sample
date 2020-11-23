@@ -1,23 +1,47 @@
-import logo from './logo.svg';
-import './App.css';
+import 'chartjs-plugin-doughnutlabel';
+import { Doughnut } from 'react-chartjs-2';
 
 function App() {
+
+  const graphdata = {
+    datasets: [
+      {
+        data: [15, 25, 35],
+        backgroundColor: ['#B9D8F7', '#FFE5EC', '#DEDFE0'],
+      },
+    ],
+    labels: ['item1', 'item2', 'item3'],
+  };
+
+  const doughnutOptions = {
+    legend: {
+      display: false,
+    },
+    plugins: {
+      doughnutlabel: {
+        labels: [
+          {
+            text: 'ITEMS',
+            color: '#666666',
+            font: {
+              size: 30,
+            },
+          },
+          {
+            text: 'TEST',
+            color: '#888888',
+          },
+        ],
+      },
+    },
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <p>Doughnut graph sample</p>
+      <div>
+        <Doughnut data={graphdata} options={doughnutOptions} />
+      </div>
     </div>
   );
 }
